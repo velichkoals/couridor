@@ -7,8 +7,6 @@ export class Border {
 		indexFrom2: BoardCell,
 		indexTo2: BoardCell,
 	): boolean {
-		if (indexFrom2.y === 8 || indexFrom2.x === 16) return false;
-
 		const denominator =
 			(indexTo1.x - indexFrom1.x) * (indexTo2.y - indexFrom2.y) -
 			(indexTo1.y - indexFrom1.y) * (indexTo2.x - indexFrom2.x);
@@ -34,13 +32,16 @@ export class Border {
 	): boolean {
 		const { borders } = boardState;
 
-		return !borders.every((border) =>
-			this.isSingleBorderCollide(
-				border.indexFrom,
-				border.indexTo,
-				indexFrom,
-				indexTo,
-			),
+		if (indexFrom.y === 8 || indexFrom.x === 16) return false;
+
+		return borders.every(
+			(border) =>
+				!Border.isSingleBorderCollide(
+					border.indexFrom,
+					border.indexTo,
+					indexFrom,
+					indexTo,
+				),
 		);
 	}
 }
