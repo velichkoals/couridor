@@ -20,7 +20,7 @@ export const customStyles = {
 		maxWidth: '640px',
 		width: 'calc(100vw - 40px)',
 		border: 'none',
-		padding: '30px',
+		padding: '50px',
 		borderRadius: '10px',
 	},
 	overlay: {

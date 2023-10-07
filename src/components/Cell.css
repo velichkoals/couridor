@@ -8,11 +8,15 @@
 	border: 1px solid rgba(188, 108, 37, 0.5);
 	cursor: not-allowed;
 	aspect-ratio: 1/1;
+	transition: background 0.2s;
 }
 
 .cell.placeholder {
-	background-color: green;
+	background-color: #acffac;
 	cursor: pointer;
+}
+.cell.placeholder:hover {
+	background-color: #00c000;
 }
 
 @media screen and (max-width: 1500px) and (min-width: 767px) {

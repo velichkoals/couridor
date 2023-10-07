@@ -11,6 +11,7 @@ export type Chip = {
 export type BoardCell = {
 	x: number;
 	y: number;
+	available?: boolean;
 	isCell?: boolean;
 	hasFirstChip?: boolean;
 	hasSecondChip?: boolean;

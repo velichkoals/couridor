@@ -35,6 +35,7 @@ export const Row = ({
 					<Cell
 						key={`${cell.x}-${cell.y}`}
 						cell={cell}
+						available={!!cell.available}
 						active={isCellActive(cell)}
 						hasChip={!!cell.hasFirstChip || !!cell.hasSecondChip}
 						chipColor={cell.hasFirstChip ? firstChip.color : secondChip.color}
