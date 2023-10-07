@@ -1,22 +1,35 @@
 import cls from 'classnames';
 import './Wall.css';
 import { useState } from 'react';
+import { Border } from '../Border';
+import { BoardCell, BoardState } from '../model';
 
 type Props = {
-	x: number;
-	y: number;
+	cell: BoardCell;
+	boardState: BoardState;
 	type: 'horr' | 'vert';
 	onClick: (x: number, y: number) => void;
 };
 
 export const Wall = (props: Props) => {
-	const { x, y, type, onClick } = props;
+	const { cell, type, boardState, onClick } = props;
 	const [isShowWall, setShowWall] = useState(false);
 
 	const onMouseEnter = () => {
-		if (y === 8) setShowWall(false);
-		else setShowWall(true);
-		console.log(x, y);
+		const nextCell =
+			type === 'horr'
+				? {
+						...cell,
+						x: cell.x + 1,
+				  }
+				: {
+						...cell,
+						y: cell.y + 1,
+				  };
+		const isShowWall = Border.isBorderStepPossible(cell, nextCell, boardState);
+		// console.log(isShowWall, x, y, boardState);
+		if (isShowWall) setShowWall(true);
+		else setShowWall(false);
 	};
 
 	const onMouseLeave = () => {
@@ -27,7 +40,7 @@ export const Wall = (props: Props) => {
 		<div
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
-			onClick={() => onClick(x, y)}
+			onClick={() => onClick(cell.x, cell.y)}
 			className={cls('wall', type, { active: false, show: isShowWall })}
 		></div>
 	);

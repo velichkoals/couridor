@@ -1,26 +1,31 @@
 import './Row.css';
 import { Wall } from './Wall';
 import { Cell } from './Cell';
-import { BoardCell } from '../model';
-import { Chip } from "../Chip";
+import { BoardCell, BoardState } from '../model';
+import { Chip } from '../Chip';
 
 type RowProps = {
 	cells: Array<BoardCell>;
 	isHorizontal?: boolean;
-	firstChip: Chip
-	secondChip: Chip
-}
+	firstChip: Chip;
+	secondChip: Chip;
+	boardState: BoardState;
+};
 
-export const Row = ({ cells, firstChip, secondChip, isHorizontal }: RowProps) => {
+export const Row = ({
+	boardState,
+	cells,
+	firstChip,
+	secondChip,
+	isHorizontal,
+}: RowProps) => {
 	return (
 		<div className={'row'}>
 			{cells.map((cell) => {
 				return cell.isCell ? (
 					<Cell
 						key={`${cell.x}-${cell.y}`}
-						index={`${cell.x}-${cell.y}`}
-						x={cell.x}
-						y={cell.y}
+						cell={cell}
 						onClick={(x, y) => {
 							console.log('Cell Click', x, y);
 						}}
@@ -30,8 +35,8 @@ export const Row = ({ cells, firstChip, secondChip, isHorizontal }: RowProps) =>
 				) : (
 					<Wall
 						type={isHorizontal ? 'vert' : 'horr'}
-						x={cell.x}
-						y={cell.y}
+						boardState={boardState}
+						cell={cell}
 						onClick={(x, y) => {
 							console.log('Wall click', x, y);
 						}}
