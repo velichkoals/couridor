@@ -23,9 +23,7 @@ const setAvailableSteps = (board: Board, steps: Array<ChipStep>): Board =>
 
 export const generateBoard = (boardState: BoardState): Board => {
     const boardWithChips = setChips(EMPTY_BOARD, boardState.first, boardState.second)
-    console.log(`ASD`, boardState.activeChip)
     const availableSteps = boardState.activeChip.calculatePossibleChipMoves(boardState);
-    const boardWithAvailableSteps = setAvailableSteps(boardWithChips, availableSteps);
 
-    return boardWithAvailableSteps
+    return setAvailableSteps(boardWithChips, availableSteps);
 }
