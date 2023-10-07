@@ -29,7 +29,6 @@
 	background-color: aquamarine;
 }
 
-
 .wall.vert:hover::after {
 	content: '';
 	position: absolute;
@@ -38,11 +37,25 @@
 	background-color: aquamarine;
 }
 
-@media screen and (max-width: 767px) and (min-width: 100px) {
-	.board .wall {
-		width: 25px;
-		height: 5px;
+@media screen and (max-width: 1500px) and (min-width: 767px) {
+	.board .wall.horr {
+		width: 50px;
+		height: 10px;
+	}
+	.board .wall.vert {
+		width: 10px;
+		height: 50px;
 	}
 }
 
-
+@media screen and (max-width: 767px) and (min-width: 100px) {
+	.board .wall.horr {
+		width: 25px;
+		height: 5px;
+		margin-right: 5px;
+	}
+	.board .wall.vert {
+		width: 5px;
+		height: 25px;
+	}
+}
