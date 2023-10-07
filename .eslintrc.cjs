@@ -7,6 +7,7 @@ module.exports = {
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    'plugin:@typescript-eslint/recommended',
     'airbnb',
     'airbnb/hooks',
     "prettier",
@@ -21,6 +22,7 @@ module.exports = {
     "sourceType": "module"
   },
   "plugins": [
+    '@typescript-eslint',
     "react",
     "react-hooks",
     "prettier",
