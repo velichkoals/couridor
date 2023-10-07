@@ -1,3 +1,4 @@
+import { Chip as ChipInstance } from "./Chip";
 export type Chip = {
 	color: boolean;
 	bordersLeft: number;
@@ -10,7 +11,7 @@ export type Chip = {
 export type BoardCell = {
 	x: number;
 	y: number;
-	isCell: boolean;
+	isCell?: boolean;
 };
 
 export type Border = {
@@ -21,7 +22,7 @@ export type Border = {
 export type Board = Array<Array<BoardCell>>
 
 export type BoardState = {
-	activeChip: Chip;
+	activeChip: ChipInstance;
 	first: BoardCell;
 	second: BoardCell;
 	borders: Array<Border>;
