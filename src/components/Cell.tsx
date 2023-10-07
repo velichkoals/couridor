@@ -5,14 +5,14 @@ import { Player } from './Player';
 type CellProps = {
 	x: number;
 	y: number;
-	index: string;
+	active?: boolean;
 	hasChip?: boolean;
 	chipColor?: boolean;
-	onClick: (x: number, y: number) => void;
+	cell?: any;
+	onClick?: (x: number, y: number) => void;
 };
 
-export const Cell = (props: CellProps) => {
-	const { x, y, hasChip, chipColor, index, onClick } = props;
+export const Cell = ({ x, y, cell, active, hasChip, chipColor, onClick }: CellProps) => {
 	return (
 		<div
 			className={cls('cell', {
@@ -20,7 +20,7 @@ export const Cell = (props: CellProps) => {
 			})}
 			onClick={() => onClick(x, y)}
 		>
-			{hasChip && <Player color={!!chipColor} active />}
+			{hasChip && <Player color={!!chipColor} active={!!active} />}
 		</div>
 	);
 };

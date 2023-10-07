@@ -23,6 +23,7 @@ export const Board = ({ boardState, firstChip, secondChip }: BoardProps) => {
 				<Row
 					key={`${rowIndex}`}
 					cells={row}
+					activeChip={boardState.activeChip}
 					firstChip={firstChip}
 					secondChip={secondChip}
 					isHorizontal={rowIndex % 2 === 0}

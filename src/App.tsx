@@ -7,13 +7,8 @@ import { Chip } from './Chip';
 import StarterModal from './components/starter-modal';
 
 function App() {
-	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
-	const [firstChip, setFirstChip] = useState<Chip>(
-		new Chip(false, 10, 'First'),
-	);
-	const [secondChip, setSecondChip] = useState<Chip>(
-		new Chip(true, 10, 'Second'),
-	);
+	const [firstChip, setFirstChip] = useState<Chip>(new Chip(false, "", 10, "Black"))
+	const [secondChip, setSecondChip] = useState<Chip>(new Chip(true, "", 10, "White"))
 	const [boardState, setBoardState] = useState<BoardState>({
 		activeChip: firstChip,
 		first: {
@@ -26,6 +21,7 @@ function App() {
 		},
 		borders: [],
 	});
+	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
 
 	const handleStartGame = (player1: string, player2: string) => {
 		setFirstChip((prev) => ({ ...prev, name: player1 }));
