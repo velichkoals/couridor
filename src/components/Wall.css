@@ -17,11 +17,12 @@
 .wall.active {
 	background-color: #000;
 }
+
 /* .wall:hover {
 	background-color: aquamarine;
 } */
 
-.wall.horr:hover::after {
+.wall.horr.show::after {
 	content: '';
 	position: absolute;
 	height: 100%;
@@ -29,7 +30,7 @@
 	background-color: aquamarine;
 }
 
-.wall.vert:hover::after {
+.wall.vert.show::after {
 	content: '';
 	position: absolute;
 	width: 100%;
