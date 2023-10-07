@@ -9,7 +9,7 @@ import FinishModal from './components/finish-modal';
 
 function App() {
 	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
-	const [isFinishModalShown, setIsFinishModalShown] = useState<boolean>(true);
+	const [isFinishModalShown, setIsFinishModalShown] = useState<boolean>(false);
 
 	const [firstChip, setFirstChip] = useState<Chip>(
 		new Chip(false, 'white', 10, 'First'),
