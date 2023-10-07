@@ -1,0 +1,33 @@
+
+.wall-box {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 280px;
+	padding: 20px;
+	background: #ab95d5;
+	color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 12px 40px -18px rgba(0, 0, 0, 0.4);
+}
+.wall-box.left {
+	margin-right: 50px;
+}
+.wall-box.right {
+	margin-left: 50px;
+}
+
+.wall-box h1,
+.wall-box h3 {
+  text-align: center;
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 100px){
+  .wall-box.left {
+    margin-right: 0px;
+  }
+  .wall-box.right{
+    margin-left: 0px;
+  }
+}

@@ -1,65 +1,45 @@
+import { useState } from "react";
 import './App.css';
-import cls from 'classnames';
-import { Chip } from './model';
-import FinishModal from './components/finish-modal';
+import { WallsBoxContainer } from './components/WallsBoxContainer';
+import { Board } from './components/Board';
+import { BoardState } from "./model";
+import { Chip } from "./Chip";
 
 function App() {
-	const chip1: Chip = {
-		name: 'Player 1',
-		walls: 10,
-	};
-	const chip2: Chip = {
-		name: 'Player 2',
-		walls: 6,
-	};
+	const [firstChip, setFirstChip] = useState<Chip>(new Chip(true, 10, "First"))
+	const [secondChip, setSecondChip] = useState<Chip>(new Chip(false, 10, "Second"))
+	const [boardState, setBoardState] = useState<BoardState>({
+		activeChip: firstChip,
+		first: {
+			x: 0,
+			y: 8,
+		},
+		second: {
+			x: 16,
+			y: 8,
+		},
+		borders: []
+	})
 
 	return (
-		<div className="wrapper">
-			<WallsContainer position="left" name={chip1.name} count={chip1.walls} />
-			<Board />
-			<WallsContainer position="right" name={chip1.name} count={chip2.walls} />
-			<FinishModal isModalShown />
+		<div className="board-wrapper">
+			<WallsBoxContainer
+				position="left"
+				name={firstChip.name}
+				wallsLeft={firstChip.bordersLeft}
+			/>
+			<Board
+				firstChip={firstChip}
+				secondChip={secondChip}
+				boardState={boardState}
+			/>
+			<WallsBoxContainer
+				position="right"
+				name={secondChip.name}
+				wallsLeft={secondChip.bordersLeft}
+			/>
 		</div>
 	);
 }
 
 export default App;
-
-const Board = () => {
-	const cells1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-	const cells2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-	return (
-		<div className="table">
-			{cells1.map((cell1) =>
-				cells2.map((cell2) => (
-					<Cell key={`${cell1}-${cell2}`} index={`${cell1}-${cell2}`} />
-				)),
-			)}
-		</div>
-	);
-};
-
-const Cell = ({ index }: { index: string }) => (
-	<div className={cls('cell')}>{index}</div>
-);
-
-const Wall = ({}: {}) => <div />;
-
-const WallsContainer = ({
-	position,
-	count,
-	name,
-}: {
-	position: 'left' | 'right';
-	name: string;
-	count: number;
-}) => (
-	<div
-		className={cls('wall-box', position, {
-			empty: count === 0,
-		})}
-	>
-		<div>{`Wall for player ${name}`}</div>
-		<div>{count}</div>
-	</div>
-);

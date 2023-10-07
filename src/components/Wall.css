@@ -1,0 +1,48 @@
+.wall {
+	position: relative;
+	/* transition: background 0.5s; */
+}
+.wall.horr {
+	width: 70px;
+	height: 10px;
+	margin-right: 10px;
+}
+.horr:nth-child(9n - 9) {
+	margin-right: 0;
+}
+.wall.vert {
+	width: 10px;
+	height: 70px;
+}
+.wall.active {
+	background-color: #000;
+}
+/* .wall:hover {
+	background-color: aquamarine;
+} */
+
+.wall.horr:hover::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: calc(200% + 10px);
+	background-color: aquamarine;
+}
+
+
+.wall.vert:hover::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: calc(200% + 10px);
+	background-color: aquamarine;
+}
+
+@media screen and (max-width: 767px) and (min-width: 100px) {
+	.board .wall {
+		width: 25px;
+		height: 5px;
+	}
+}
+
+
