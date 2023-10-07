@@ -5,15 +5,19 @@ import { Board } from './components/Board';
 import { BoardState } from './model';
 import { Chip } from './Chip';
 import StarterModal from './components/starter-modal';
+import FinishModal from './components/finish-modal';
 
 function App() {
 	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
+	const [isFinishModalShown, setIsFinishModalShown] = useState<boolean>(true);
+
 	const [firstChip, setFirstChip] = useState<Chip>(
-		new Chip(false, 10, 'First'),
+		new Chip(false, 'white', 10, 'First'),
 	);
 	const [secondChip, setSecondChip] = useState<Chip>(
-		new Chip(true, 10, 'Second'),
+		new Chip(true, 'black', 10, 'Second'),
 	);
+	const [winner, setWinner] = useState<Chip | null>(null);
 	const [boardState, setBoardState] = useState<BoardState>({
 		activeChip: firstChip,
 		first: {
@@ -32,6 +36,10 @@ function App() {
 		setSecondChip((prev) => ({ ...prev, name: player2 }));
 
 		setIsStartModalShown(false);
+	};
+
+	const handleFinishGame = () => {
+		setIsFinishModalShown(true);
 	};
 
 	return (
@@ -54,6 +62,10 @@ function App() {
 			<StarterModal
 				isModalShown={isStartModalShown}
 				handleStartGame={handleStartGame}
+			/>
+			<FinishModal
+				isModalShown={isFinishModalShown}
+				winner={winner?.name || 'Player'}
 			/>
 		</div>
 	);
