@@ -31,8 +31,6 @@ export const Wall = (props: Props) => {
 			nextCell,
 			boardState,
 		);
-		console.log(isShowWallCheck);
-		// console.log(isShowWall, x, y, boardState);
 		if (isShowWallCheck) setShowWall(true);
 		else setShowWall(false);
 	};

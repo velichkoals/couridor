@@ -15,12 +15,16 @@
 	height: 70px;
 }
 .wall.active {
-	background-color: #000;
+	background-color: brown;
 }
 
-/* .wall:hover {
-	background-color: aquamarine;
-} */
+.wall.horr.active::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: calc(200% + 10px);
+	background-color: brown;
+}
 
 .wall.horr.show::after {
 	content: '';
@@ -37,6 +41,8 @@
 	height: calc(200% + 10px);
 	background-color: aquamarine;
 }
+
+
 
 @media screen and (max-width: 1500px) and (min-width: 767px) {
 	.board .wall.horr {
