@@ -32,8 +32,8 @@ function App() {
 	});
 
 	const handleStartGame = (player1: string, player2: string) => {
-		const first = new Chip(false, "white", 10, player1)
-		const second = new Chip(true, "black", 10, player2)
+		const first = new Chip(false, 'white', 10, player1);
+		const second = new Chip(true, 'black', 10, player2);
 
 		setFirstChip(first);
 		setSecondChip(second);
