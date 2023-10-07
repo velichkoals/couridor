@@ -57,6 +57,9 @@ function App() {
 				firstChip={firstChip}
 				secondChip={secondChip}
 				boardState={boardState}
+				setBoardState={setBoardState}
+				setFirstChip={setFirstChip}
+				setSecondChip={setSecondChip}
 			/>
 			<WallsBoxContainer
 				position="right"
