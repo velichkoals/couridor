@@ -26,9 +26,14 @@ export const Wall = (props: Props) => {
 						...cell,
 						y: cell.y + 1,
 				  };
-		const isShowWall = Border.isBorderStepPossible(cell, nextCell, boardState);
+		const isShowWallCheck = Border.isBorderStepPossible(
+			cell,
+			nextCell,
+			boardState,
+		);
+		console.log(isShowWallCheck);
 		// console.log(isShowWall, x, y, boardState);
-		if (isShowWall) setShowWall(true);
+		if (isShowWallCheck) setShowWall(true);
 		else setShowWall(false);
 	};
 
@@ -42,6 +47,6 @@ export const Wall = (props: Props) => {
 			onMouseLeave={onMouseLeave}
 			onClick={() => onClick(cell.x, cell.y)}
 			className={cls('wall', type, { active: false, show: isShowWall })}
-		></div>
+		/>
 	);
 };

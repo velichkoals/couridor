@@ -21,12 +21,12 @@ function App() {
 	const [boardState, setBoardState] = useState<BoardState>({
 		activeChip: firstChip,
 		first: {
-			x: 0,
-			y: 8,
+			x: 8,
+			y: 0,
 		},
 		second: {
-			x: 16,
-			y: 8,
+			x: 8,
+			y: 16,
 		},
 		borders: [],
 	});

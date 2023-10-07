@@ -1,31 +1,47 @@
-import { BOARD_SIZE, CELLS_COUNT } from "../consts";
-import { Board, BoardCell, BoardState, ChipStep } from "../model";
-import { isCell } from "./cell";
+import { BOARD_SIZE, CELLS_COUNT } from '../consts';
+import { Board, BoardCell, BoardState, ChipStep } from '../model';
+import { isCell } from './cell';
 
 const EMPTY_BOARD = [
-    ...new Array(BOARD_SIZE).fill(0).map((row, rowIndex) => {
-        return new Array(isCell(rowIndex) ? BOARD_SIZE : CELLS_COUNT).fill(0).map((cell, cellIndex) => ({
-            x: rowIndex,
-            y: cellIndex,
-            isCell: isCell(rowIndex) && isCell(cellIndex)
-        }))
-    })
-]
+	...new Array(BOARD_SIZE).fill(0).map((row, rowIndex) =>
+		new Array(isCell(rowIndex) ? BOARD_SIZE : CELLS_COUNT)
+			.fill(0)
+			.map((cell, cellIndex) => ({
+				x: cellIndex,
+				y: rowIndex,
+				isCell: isCell(rowIndex) && isCell(cellIndex),
+			})),
+	),
+];
 
 const areCoordinatesEqual = (first: BoardCell, second: BoardCell): boolean =>
-    first.x === second.x && first.y === second.y
+	first.x === second.x && first.y === second.y;
 
 const setChips = (board: Board, first: BoardCell, second: BoardCell): Board =>
-    board.map(row => row.map(cell => ({ ...cell, hasFirstChip: areCoordinatesEqual(cell, first), hasSecondChip: areCoordinatesEqual(cell, second) })))
+	board.map((row) =>
+		row.map((cell) => ({
+			...cell,
+			hasFirstChip: areCoordinatesEqual(cell, first),
+			hasSecondChip: areCoordinatesEqual(cell, second),
+		})),
+	);
 
 const setAvailableSteps = (board: Board, steps: Array<ChipStep>): Board =>
-    board.map(row => row.map(cell => ({ ...cell, available: !!steps.find(step => areCoordinatesEqual(cell, step.index)) })))
+	board.map((row) =>
+		row.map((cell) => ({
+			...cell,
+			available: !!steps.find((step) => areCoordinatesEqual(cell, step.index)),
+		})),
+	);
 
 export const generateBoard = (boardState: BoardState): Board => {
-    const boardWithChips = setChips(EMPTY_BOARD, boardState.first, boardState.second)
-    console.log(`ASD`, boardState.activeChip)
-    const availableSteps = boardState.activeChip.calculatePossibleChipMoves(boardState);
-    const boardWithAvailableSteps = setAvailableSteps(boardWithChips, availableSteps);
+	const boardWithChips = setChips(
+		EMPTY_BOARD,
+		boardState.first,
+		boardState.second,
+	);
+	const availableSteps =
+		boardState.activeChip.calculatePossibleChipMoves(boardState);
 
-    return boardWithAvailableSteps
-}
+	return setAvailableSteps(boardWithChips, availableSteps);
+};
