@@ -1,0 +1,30 @@
+
+.player {
+	position: relative;
+	width: 50px;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+}
+
+.player.player1 {
+	background-color: var(--player1-color);
+}
+.player.player2 {
+	background-color: var(--player2-color);
+}
+
+.player.active {
+	box-shadow: inset 0px 0px 0px 1px green;
+}
+
+.player.active::before {
+	content: '';
+	position: absolute;
+	height: 20px;
+	width: 20px;
+	background-color: green;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
