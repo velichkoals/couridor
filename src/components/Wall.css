@@ -18,31 +18,44 @@
 	background-color: brown;
 }
 
-.wall.horr.active::after {
-	content: '';
-	position: absolute;
-	height: 100%;
-	width: calc(200% + 10px);
-	background-color: brown;
-}
-
+.wall.horr.active::after,
 .wall.horr.show::after {
 	content: '';
 	position: absolute;
 	height: 100%;
 	width: calc(200% + 10px);
+}
+.wall.horr.active::after {
+	background-color: brown;
+	width: 100%;
+	/* transform: scaleX(1.5);
+  transform-origin: left; */
+}
+
+.wall.horr.show::after {
 	background-color: aquamarine;
 }
 
+
+
+.wall.vert.active::after,
 .wall.vert.show::after {
 	content: '';
 	position: absolute;
 	width: 100%;
 	height: calc(200% + 10px);
-	background-color: aquamarine;
 }
 
+.wall.vert.active::after {
+	background-color: brown;
+	height: 100%;
+	/* transform: scaleY(1.5);
+  transform-origin: top; */
+}
 
+.wall.vert.show::after {
+	background-color: aquamarine;
+}
 
 @media screen and (max-width: 1500px) and (min-width: 767px) {
 	.board .wall.horr {
@@ -64,5 +77,15 @@
 	.board .wall.vert {
 		width: 5px;
 		height: 25px;
+	}
+
+	.wall.horr.active::after,
+	.wall.horr.show::after {
+		width: calc(200% + 5px);
+	}
+
+	.wall.vert.active::after,
+	.wall.vert.show::after {
+		height: calc(200% + 5px);
 	}
 }

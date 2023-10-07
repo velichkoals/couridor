@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { WallsBoxContainer } from './components/WallsBoxContainer';
 import { Board } from './components/Board';
@@ -17,7 +17,7 @@ function App() {
 	const [secondChip, setSecondChip] = useState<Chip>(
 		new Chip(true, 'black', 10, 'Second'),
 	);
-	const [winner, setWinner] = useState<Chip | null>(null);
+	const [winner, setWinner] = useState<string>('Player');
 	const [boardState, setBoardState] = useState<BoardState>({
 		activeChip: firstChip,
 		first: {
@@ -31,6 +31,15 @@ function App() {
 		borders: [],
 	});
 
+	useEffect(() => {
+		if (boardState.first.y === 16) {
+			handleFinishGame(firstChip.name);
+		}
+		if (boardState.second.y === 0) {
+			handleFinishGame(secondChip.name);
+		}
+	}, [boardState]);
+
 	const handleStartGame = (player1: string, player2: string) => {
 		const first = new Chip(false, 'white', 10, player1);
 		const second = new Chip(true, 'black', 10, player2);
@@ -42,7 +51,8 @@ function App() {
 		setIsStartModalShown(false);
 	};
 
-	const handleFinishGame = () => {
+	const handleFinishGame = (name: string) => {
+		setWinner(name);
 		setIsFinishModalShown(true);
 	};
 
@@ -72,7 +82,7 @@ function App() {
 			/>
 			<FinishModal
 				isModalShown={isFinishModalShown}
-				winner={winner?.name || 'Player'}
+				winner={winner || 'Player'}
 			/>
 		</div>
 	);

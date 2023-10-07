@@ -1,13 +1,12 @@
 import React, { useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
-import Input from '../common/input/Input';
-import { Button } from '../common/button';
+
 import { customStyles, ModalInterface } from '../starter-modal';
 
 export interface FinishModalInterface {
 	isModalShown: boolean;
-	winner?: string | null;
+	winner: string;
 }
 
 const FinishModal = ({ isModalShown, winner }: FinishModalInterface) => (
