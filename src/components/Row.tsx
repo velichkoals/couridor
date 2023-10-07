@@ -3,7 +3,6 @@ import { Wall } from './Wall';
 import { Cell } from './Cell';
 import { BoardCell, BoardState } from '../model';
 import { Chip } from '../Chip';
-import { Board } from './Board';
 
 type RowProps = {
 	cells: Array<BoardCell>;
@@ -66,10 +65,6 @@ export const Row = ({
 									});
 								}
 							}
-
-							// setBoardState();
-
-							console.log('Cell Click', x, y);
 						}}
 					/>
 				) : (
@@ -86,6 +81,7 @@ export const Row = ({
 								second,
 								borders: [...borders, { indexFrom: from, indexTo: to }],
 							});
+
 						}}
 					/>
 				),
