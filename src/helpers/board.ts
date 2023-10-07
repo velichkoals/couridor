@@ -19,5 +19,8 @@ const setChips = (board: Board, first: BoardCell, second: BoardCell): Board =>
     board.map(row => row.map(cell => ({ ...cell, hasFirstChip: areCoordinatesEqual(cell, first), hasSecondChip: areCoordinatesEqual(cell, second) })))
 
 export const generateBoard = (boardState: BoardState): Board => {
-    return setChips(EMPTY_BOARD, boardState.first, boardState.second)
+    const boardWithChips = setChips(EMPTY_BOARD, boardState.first, boardState.second)
+
+    console.log(boardState.activeChip, boardState.activeChip.calculatePossibleChipMoves(boardState))
+    return boardWithChips
 }
