@@ -12,6 +12,8 @@ export type BoardCell = {
 	x: number;
 	y: number;
 	isCell?: boolean;
+	hasFirstChip?: boolean;
+	hasSecondChip?: boolean;
 };
 
 export type Border = {
