@@ -7,7 +7,7 @@ export const Button = styled.button`
 
 	max-width: ${({ mw }) => mw || '100%'};
 	max-height: ${({ mh }) => mh || '50px'};
-	background: ${({ bg }) => bg || 'rgba(18,175,194,0.87)'};
+	background: ${({ bg }) => bg || '#8a62d5'};
 	border: 1px solid #fff;
 
 	padding: ${({ p }) => p || '16px 24px'};
@@ -32,7 +32,7 @@ export const Button = styled.button`
 	}
 
 	&:disabled {
-		background: rgba(18, 175, 194, 0.51);
+		background: rgba(171, 149, 213, 0.76);
 		cursor: not-allowed;
 	}
 `;

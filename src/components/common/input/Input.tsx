@@ -33,7 +33,7 @@ const CustomInput = styled.input`
 
 	&:focus {
 		outline: none;
-		border: 2px solid #0bc9e1;
+		border: 2px solid #ab95d5;
 	}
 
 	&:-webkit-autofill,
