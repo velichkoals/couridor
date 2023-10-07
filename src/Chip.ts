@@ -186,8 +186,8 @@ export class Chip implements ChipType {
 		}
 
 		const { first, second, borders } = boardState;
-		const currentChipCoords = boardState.activeChip.color ? first : second;
-		const otherChipCoords = boardState.activeChip.color ? second : first;
+		const currentChipCoords = boardState.activeChip.color ? second : first;
+		const otherChipCoords = boardState.activeChip.color ? first : second;
 
 		const possibleChipMoves: ChipStep[] = [];
 

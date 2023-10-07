@@ -6,6 +6,7 @@ import { BoardCell } from '../model';
 type CellProps = {
 	cell: BoardCell;
 	active?: boolean;
+	available?: boolean;
 	hasChip?: boolean;
 	chipColor?: boolean;
 	onClick?: (x: number, y: number) => void;
@@ -15,15 +16,15 @@ export const Cell = (props: CellProps) => {
 	const {
 		cell: { x, y },
 		active,
+		available,
 		hasChip,
 		chipColor,
-		onClick,
+		onClick
 	} = props;
-
 	return (
 		<div
 			className={cls('cell', {
-				placeholder: false,
+				placeholder: available,
 			})}
 			onClick={() => onClick?.(x, y)}
 		>

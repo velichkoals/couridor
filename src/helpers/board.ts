@@ -1,5 +1,5 @@
 import { BOARD_SIZE, CELLS_COUNT } from "../consts";
-import { Board, BoardCell, BoardState } from "../model";
+import { Board, BoardCell, BoardState, ChipStep } from "../model";
 import { isCell } from "./cell";
 
 const EMPTY_BOARD = [
@@ -18,9 +18,14 @@ const areCoordinatesEqual = (first: BoardCell, second: BoardCell): boolean =>
 const setChips = (board: Board, first: BoardCell, second: BoardCell): Board =>
     board.map(row => row.map(cell => ({ ...cell, hasFirstChip: areCoordinatesEqual(cell, first), hasSecondChip: areCoordinatesEqual(cell, second) })))
 
+const setAvailableSteps = (board: Board, steps: Array<ChipStep>): Board =>
+    board.map(row => row.map(cell => ({ ...cell, available: !!steps.find(step => areCoordinatesEqual(cell, step.index)) })))
+
 export const generateBoard = (boardState: BoardState): Board => {
     const boardWithChips = setChips(EMPTY_BOARD, boardState.first, boardState.second)
+    console.log(`ASD`, boardState.activeChip)
+    const availableSteps = boardState.activeChip.calculatePossibleChipMoves(boardState);
+    const boardWithAvailableSteps = setAvailableSteps(boardWithChips, availableSteps);
 
-    console.log(boardState.activeChip, boardState.activeChip.calculatePossibleChipMoves(boardState))
-    return boardWithChips
+    return boardWithAvailableSteps
 }
