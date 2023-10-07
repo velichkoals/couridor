@@ -18,17 +18,17 @@ function App() {
 	};
 
 	return (
-		<div className="wrapper">
+		<div className="board-wrapper">
 			<WallsBoxContainer
 				position="left"
 				name={chip1.name}
-				count={chip1.walls}
+				wallsLeft={chip1.walls}
 			/>
 			<Board />
 			<WallsBoxContainer
 				position="right"
 				name={chip1.name}
-				count={chip2.walls}
+				wallsLeft={chip2.walls}
 			/>
 		</div>
 	);

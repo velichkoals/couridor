@@ -1,5 +1,6 @@
 import cls from 'classnames';
 import './Cell.css';
+import { Player } from './Player';
 
 type Props = {
 	index: string;
@@ -15,7 +16,8 @@ export const Cell = (props: Props) => {
 				placeholder: false,
 			})}
 		>
-			{index}
+			<Player active />
 		</div>
 	);
 };
+

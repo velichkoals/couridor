@@ -4,19 +4,19 @@ import './WallsBoxContainer.css';
 type Props = {
 	position: 'left' | 'right';
 	name: string;
-	count: number;
+	wallsLeft: number;
 };
 
 export const WallsBoxContainer = (props: Props) => {
-	const { position, count, name } = props;
+	const { position, wallsLeft, name } = props;
 	return (
 		<div
 			className={cls('wall-box', position, {
-				empty: count === 0,
+				empty: wallsLeft === 0,
 			})}
 		>
-			<div className="header">{`Wall for player ${name}`}</div>
-			<div className="body">{count}</div>
+			<h3>{`Walls for player ${name}`}</h3>
+			<h1>{wallsLeft}</h1>
 		</div>
 	);
 };

@@ -1,6 +1,12 @@
-.wrapper {
+.board-wrapper {
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+@media screen and (max-width: 767px) and (min-width: 100px){
+  .board-wrapper {
+      flex-direction: column;
+  }
 }
