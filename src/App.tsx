@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react';
 import './App.css';
 import { WallsBoxContainer } from './components/WallsBoxContainer';
 import { Board } from './components/Board';
-import { BoardState } from "./model";
-import { Chip } from "./Chip";
+import { BoardState } from './model';
+import { Chip } from './Chip';
+import StarterModal from './components/starter-modal';
 
 function App() {
-	const [firstChip, setFirstChip] = useState<Chip>(new Chip(false, 10, "First"))
-	const [secondChip, setSecondChip] = useState<Chip>(new Chip(true, 10, "Second"))
+	const [firstChip, setFirstChip] = useState<Chip>(new Chip(false, "", 10, "Black"))
+	const [secondChip, setSecondChip] = useState<Chip>(new Chip(true, "", 10, "White"))
 	const [boardState, setBoardState] = useState<BoardState>({
 		activeChip: firstChip,
 		first: {
@@ -18,8 +19,20 @@ function App() {
 			x: 16,
 			y: 8,
 		},
-		borders: []
-	})
+		borders: [],
+	});
+	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
+
+	const handleStartGame = (player1: string, player2: string) => {
+		const first = new Chip(false, "", 10, player1)
+		const second = new Chip(true, "", 10, player2)
+
+		setFirstChip(first);
+		setSecondChip(second);
+		setBoardState((prev) => ({ ...prev, activeChip: first }));
+
+		setIsStartModalShown(false);
+	};
 
 	return (
 		<div className="board-wrapper">
@@ -37,6 +50,10 @@ function App() {
 				position="right"
 				name={secondChip.name}
 				wallsLeft={secondChip.bordersLeft}
+			/>
+			<StarterModal
+				isModalShown={isStartModalShown}
+				handleStartGame={handleStartGame}
 			/>
 		</div>
 	);
