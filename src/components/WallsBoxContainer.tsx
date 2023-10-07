@@ -15,7 +15,7 @@ export const WallsBoxContainer = (props: Props) => {
 				empty: wallsLeft === 0,
 			})}
 		>
-			<h3>{`Walls for player ${name}`}</h3>
+			<h3>{`Walls for ${name}`}</h3>
 			<h1>{wallsLeft}</h1>
 		</div>
 	);
