@@ -175,6 +175,7 @@ const makeJump = (
 export class Chip implements ChipType {
 	constructor(
 		public color: boolean,
+		public skinColor: string = 'black',
 		public bordersLeft: number = 10,
 		public name: string = 'Player',
 	) {}

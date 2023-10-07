@@ -1,6 +1,11 @@
 import cls from 'classnames';
 import './Player.css';
 
-export const Player = ({ active }: { active: boolean }) => {
-	return <div className={cls('player player1', { active })}></div>;
+type PlayerProps = {
+	active: boolean
+	color: boolean
+}
+
+export const Player = ({ color, active }: PlayerProps) => {
+	return <div className={cls('player', { player1: color, player2: !color, active })}></div>;
 };

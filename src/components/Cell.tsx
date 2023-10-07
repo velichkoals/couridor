@@ -2,24 +2,25 @@ import cls from 'classnames';
 import './Cell.css';
 import { Player } from './Player';
 
-type Props = {
+type CellProps = {
 	x: number;
 	y: number;
 	index: string;
+	hasChip?: boolean;
+	chipColor?: boolean;
 	onClick: (x: number, y: number) => void;
 };
 
-export const Cell = (props: Props) => {
-	const { x, y, index, onClick } = props;
+export const Cell = (props: CellProps) => {
+	const { x, y, hasChip, chipColor, index, onClick } = props;
 	return (
 		<div
-			onClick={() => onClick(x, y)}
 			className={cls('cell', {
 				placeholder: false,
 			})}
+			onClick={() => onClick(x, y)}
 		>
-			{index}
-			{/* <Player active /> */}
+			{hasChip && <Player color={!!chipColor} active />}
 		</div>
 	);
 };

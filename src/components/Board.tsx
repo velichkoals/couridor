@@ -11,20 +11,23 @@ type BoardProps = {
 	boardState: BoardState;
 };
 
-export const Board = ({ boardState }: BoardProps) => {
-	const board = useMemo(() => generateBoard(), []);
+export const Board = ({ boardState, firstChip, secondChip }: BoardProps) => {
+	const board = useMemo(
+		() => generateBoard(boardState),
+		[boardState]
+ 	);
 
 	return (
-		<div className='board-container'>
-			<div className={'board'}>
-				{board.map((row, rowIndex) => (
-					<Row
-						key={`${rowIndex}`}
-						cells={row}
-						isHorizontal={rowIndex % 2 === 0}
-					/>
-				))}
-			</div>
+		<div className={'board'}>
+			{board.map((row, rowIndex) => (
+				<Row
+					key={`${rowIndex}`}
+					cells={row}
+					firstChip={firstChip}
+					secondChip={secondChip}
+					isHorizontal={rowIndex % 2 === 0}
+				/>
+			))}
 		</div>
 	);
 };
