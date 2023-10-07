@@ -28,8 +28,8 @@
 .wall.horr.active::after {
 	background-color: brown;
 	width: 100%;
-	transform: scaleX(1.5);
-  transform-origin: left;
+	/* transform: scaleX(1.5);
+  transform-origin: left; */
 }
 
 .wall.horr.show::after {
@@ -49,8 +49,8 @@
 .wall.vert.active::after {
 	background-color: brown;
 	height: 100%;
-	transform: scaleY(1.5);
-  transform-origin: top;
+	/* transform: scaleY(1.5);
+  transform-origin: top; */
 }
 
 .wall.vert.show::after {
