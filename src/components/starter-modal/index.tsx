@@ -6,6 +6,7 @@ import { Button } from '../common/button';
 
 export interface ModalInterface {
 	isModalShown: boolean;
+	handleStartGame: (player1: string, player2: string) => void;
 }
 export const customStyles = {
 	content: {
@@ -32,8 +33,7 @@ export const customStyles = {
 	},
 };
 
-// const [isModalShown, setIsModalShown] = useState<boolean>(true);
-const StarterModal = ({ isModalShown }: ModalInterface) => {
+const StarterModal = ({ isModalShown, handleStartGame }: ModalInterface) => {
 	const firstPlayerRef = useRef(null);
 	const secondPlayerRef = useRef(null);
 
@@ -44,10 +44,6 @@ const StarterModal = ({ isModalShown }: ModalInterface) => {
 		() => !firstPlayerName.length || !secondPlayerName.length,
 		[firstPlayerName, secondPlayerName],
 	);
-
-	const handleStartGame = () => {
-		console.log('start game');
-	};
 
 	return (
 		<Modal
@@ -90,7 +86,10 @@ const StarterModal = ({ isModalShown }: ModalInterface) => {
 				{/* </SettingsItem> */}
 			</Settings>
 			<ButtonWrapper>
-				<Button disabled={isButtonDisabled} onClick={handleStartGame}>
+				<Button
+					disabled={isButtonDisabled}
+					onClick={() => handleStartGame(firstPlayerName, secondPlayerName)}
+				>
 					Start Game
 				</Button>
 			</ButtonWrapper>
