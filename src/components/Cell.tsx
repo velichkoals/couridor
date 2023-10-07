@@ -16,7 +16,8 @@ export const Cell = (props: Props) => {
 				placeholder: false,
 			})}
 		>
-			<Player active />
+			{index}
+			{/* <Player active /> */}
 		</div>
 	);
 };

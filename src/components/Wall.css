@@ -1,5 +1,6 @@
 .wall {
-	transition: all 0.5s;
+	position: relative;
+	/* transition: background 0.5s; */
 }
 .wall.horr {
 	width: 70px;
@@ -16,7 +17,24 @@
 .wall.active {
 	background-color: #000;
 }
-.wall:hover {
+/* .wall:hover {
+	background-color: aquamarine;
+} */
+
+.wall.horr:hover::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: calc(200% + 10px);
+	background-color: aquamarine;
+}
+
+
+.wall.vert:hover::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: calc(200% + 10px);
 	background-color: aquamarine;
 }
 
@@ -26,3 +44,5 @@
 		height: 5px;
 	}
 }
+
+
