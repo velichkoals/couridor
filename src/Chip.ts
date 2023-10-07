@@ -12,7 +12,7 @@ import {
 const makeStep = (currentChipCoords: BoardCell, borders: Border[]) => {
 	const steps: ChipStep[] = [];
 
-	if (currentChipCoords.x < BOARD_SIZE) {
+	if (currentChipCoords.x < BOARD_SIZE - 1) {
 		const newX = currentChipCoords.x + STEP;
 
 		if (
@@ -56,7 +56,7 @@ const makeStep = (currentChipCoords: BoardCell, borders: Border[]) => {
 		}
 	}
 
-	if (currentChipCoords.y < BOARD_SIZE) {
+	if (currentChipCoords.y < BOARD_SIZE - 1) {
 		const newY = currentChipCoords.y + STEP;
 
 		if (
