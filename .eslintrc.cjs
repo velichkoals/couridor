@@ -5,6 +5,7 @@ module.exports = {
     "node": true
   },
   "extends": [
+    "plugin:import/typescript",
     "eslint:recommended",
     "plugin:react/recommended",
     'plugin:@typescript-eslint/recommended',
@@ -12,15 +13,15 @@ module.exports = {
     'airbnb/hooks',
     "prettier",
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "overrides": [
   ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
   "plugins": [
     '@typescript-eslint',
     "react",
@@ -42,6 +43,8 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "no-nested-ternary": 'off',
+    "no-use-before-define": 'off',
+    "import/extensions": "off",
     "react/no-unescaped-entities": "off"
   }
 }
