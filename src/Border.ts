@@ -32,7 +32,7 @@ export class Border {
 	): boolean {
 		const { borders } = boardState;
 
-		if (indexFrom.y === 8 || indexFrom.x === 16) return false;
+		if (indexFrom.x === 8 || indexFrom.y === 16) return false;
 
 		return borders.every(
 			(border) =>
