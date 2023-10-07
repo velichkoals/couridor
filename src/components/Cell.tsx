@@ -8,17 +8,16 @@ type CellProps = {
 	active?: boolean;
 	hasChip?: boolean;
 	chipColor?: boolean;
-	cell?: any;
 	onClick?: (x: number, y: number) => void;
 };
 
-export const Cell = ({ x, y, cell, active, hasChip, chipColor, onClick }: CellProps) => {
+export const Cell = ({ x, y, active, hasChip, chipColor, onClick }: CellProps) => {
 	return (
 		<div
 			className={cls('cell', {
 				placeholder: false,
 			})}
-			onClick={() => onClick(x, y)}
+			onClick={() => onClick?.(x, y)}
 		>
 			{hasChip && <Player color={!!chipColor} active={!!active} />}
 		</div>

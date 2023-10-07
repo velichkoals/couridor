@@ -24,8 +24,12 @@ function App() {
 	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
 
 	const handleStartGame = (player1: string, player2: string) => {
-		setFirstChip((prev) => ({ ...prev, name: player1 }));
-		setSecondChip((prev) => ({ ...prev, name: player2 }));
+		const first = new Chip(false, "", 10, player1)
+		const second = new Chip(true, "", 10, player2)
+
+		setFirstChip(first);
+		setSecondChip(second);
+		setBoardState((prev) => ({ ...prev, activeChip: first }));
 
 		setIsStartModalShown(false);
 	};
