@@ -77,8 +77,8 @@ export const Row = ({
 						type={isHorizontal ? 'vert' : 'horr'}
 						boardState={boardState}
 						cell={cell}
-						onClick={(x, y) => {
-							console.log('Wall click', x, y);
+						onClick={(cell, nextCell) => {
+							console.log('Wall click', cell, nextCell);
 						}}
 					/>
 				),

@@ -8,24 +8,27 @@ type Props = {
 	cell: BoardCell;
 	boardState: BoardState;
 	type: 'horr' | 'vert';
-	onClick: (x: number, y: number) => void;
+	onClick: (cell: BoardCell, nextCell: BoardCell) => void;
 };
 
 export const Wall = (props: Props) => {
 	const { cell, type, boardState, onClick } = props;
 	const [isShowWall, setShowWall] = useState(false);
 
+	const genNextCell = () => {
+		return type === 'horr'
+			? {
+					...cell,
+					x: cell.x + 1,
+			  }
+			: {
+					...cell,
+					y: cell.y + 1,
+			  };
+	};
+
 	const onMouseEnter = () => {
-		const nextCell =
-			type === 'horr'
-				? {
-						...cell,
-						x: cell.x + 1,
-				  }
-				: {
-						...cell,
-						y: cell.y + 1,
-				  };
+		const nextCell = genNextCell();
 		const isShowWallCheck = Border.isBorderStepPossible(
 			cell,
 			nextCell,
@@ -39,11 +42,16 @@ export const Wall = (props: Props) => {
 		setShowWall(false);
 	};
 
+	const handleClick = () => {
+		const nextCell = genNextCell();
+		onClick(cell, nextCell);
+	};
+
 	return (
 		<div
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
-			onClick={() => onClick(cell.x, cell.y)}
+			onClick={handleClick}
 			className={cls('wall', type, { active: false, show: isShowWall })}
 		/>
 	);
