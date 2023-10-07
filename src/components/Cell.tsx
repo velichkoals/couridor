@@ -1,17 +1,25 @@
 import cls from 'classnames';
 import './Cell.css';
 import { Player } from './Player';
+import { BoardCell } from '../model';
 
 type CellProps = {
-	x: number;
-	y: number;
+	cell: BoardCell;
 	active?: boolean;
 	hasChip?: boolean;
 	chipColor?: boolean;
 	onClick?: (x: number, y: number) => void;
 };
 
-export const Cell = ({ x, y, active, hasChip, chipColor, onClick }: CellProps) => {
+export const Cell = (props: CellProps) => {
+	const {
+		cell: { x, y },
+		active,
+		hasChip,
+		chipColor,
+		onClick,
+	} = props;
+
 	return (
 		<div
 			className={cls('cell', {

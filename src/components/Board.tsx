@@ -27,7 +27,9 @@ export const Board = ({ boardState, firstChip, secondChip }: BoardProps) => {
 					firstChip={firstChip}
 					secondChip={secondChip}
 					isHorizontal={rowIndex % 2 === 0}
+					boardState={boardState}
 				/>
+
 			))}
 		</div>
 	);

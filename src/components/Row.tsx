@@ -1,24 +1,32 @@
 import './Row.css';
 import { Wall } from './Wall';
 import { Cell } from './Cell';
-import { BoardCell } from '../model';
-import { Chip } from "../Chip";
+import { BoardCell, BoardState } from '../model';
+import { Chip } from '../Chip';
 
 type RowProps = {
-	cells: Array<BoardCell>
-	activeChip: Chip
-	firstChip: Chip
-	secondChip: Chip
-	isHorizontal?: boolean
-}
+	cells: Array<BoardCell>;
+	isHorizontal?: boolean;
+	activeChip: Chip;
+	firstChip: Chip;
+	secondChip: Chip;
+	boardState: BoardState;
+};
 
 const areChipsEqual = (firstChip: Chip, secondChip: Chip): boolean =>
 	firstChip.name === secondChip.name;
 
-export const Row = ({ cells, activeChip, firstChip, secondChip, isHorizontal }: RowProps) => {
+export const Row = ({
+	boardState,
+	cells,
+	firstChip,
+	secondChip,
+	isHorizontal,
+	activeChip,
+}: RowProps) => {
 	const isCellActive = (cell: BoardCell): boolean =>
 		(!!cell.hasFirstChip && areChipsEqual(activeChip, firstChip)) ||
-		(!!cell.hasSecondChip && areChipsEqual(activeChip, secondChip))
+		(!!cell.hasSecondChip && areChipsEqual(activeChip, secondChip));
 
 	return (
 		<div className={'row'}>
@@ -26,11 +34,8 @@ export const Row = ({ cells, activeChip, firstChip, secondChip, isHorizontal }: 
 				return cell.isCell ? (
 					<Cell
 						key={`${cell.x}-${cell.y}`}
-						index={`${cell.x}-${cell.y}`}
-						x={cell.x}
-						y={cell.y}
-						active={isCellActive(cell)}
 						cell={cell}
+						active={isCellActive(cell)}
 						hasChip={!!cell.hasFirstChip || !!cell.hasSecondChip}
 						chipColor={cell.hasFirstChip ? firstChip.color : secondChip.color}
 						onClick={(x, y) => {
@@ -41,8 +46,8 @@ export const Row = ({ cells, activeChip, firstChip, secondChip, isHorizontal }: 
 					<Wall
 						key={`${cell.x}-${cell.y}`}
 						type={isHorizontal ? 'vert' : 'horr'}
-						x={cell.x}
-						y={cell.y}
+						boardState={boardState}
+						cell={cell}
 						onClick={(x, y) => {
 							console.log('Wall click', x, y);
 						}}
