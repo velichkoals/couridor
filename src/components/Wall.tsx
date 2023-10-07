@@ -52,7 +52,7 @@ export const Wall = (props: Props) => {
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
 			onClick={handleClick}
-			className={cls('wall', type, { active: false, show: isShowWall })}
+			className={cls('wall', type, { active: cell.filled, show: isShowWall })}
 		/>
 	);
 };
