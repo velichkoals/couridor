@@ -5,10 +5,19 @@ import { Board } from './components/Board';
 import { BoardState } from './model';
 import { Chip } from './Chip';
 import StarterModal from './components/starter-modal';
+import FinishModal from './components/finish-modal';
 
 function App() {
-	const [firstChip, setFirstChip] = useState<Chip>(new Chip(false, "", 10, "Black"))
-	const [secondChip, setSecondChip] = useState<Chip>(new Chip(true, "", 10, "White"))
+	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
+	const [isFinishModalShown, setIsFinishModalShown] = useState<boolean>(true);
+
+	const [firstChip, setFirstChip] = useState<Chip>(
+		new Chip(false, 'white', 10, 'First'),
+	);
+	const [secondChip, setSecondChip] = useState<Chip>(
+		new Chip(true, 'black', 10, 'Second'),
+	);
+	const [winner, setWinner] = useState<Chip | null>(null);
 	const [boardState, setBoardState] = useState<BoardState>({
 		activeChip: firstChip,
 		first: {
@@ -21,17 +30,20 @@ function App() {
 		},
 		borders: [],
 	});
-	const [isStartModalShown, setIsStartModalShown] = useState<boolean>(true);
 
 	const handleStartGame = (player1: string, player2: string) => {
-		const first = new Chip(false, "", 10, player1)
-		const second = new Chip(true, "", 10, player2)
+		const first = new Chip(false, 'white', 10, player1);
+		const second = new Chip(true, 'black', 10, player2);
 
 		setFirstChip(first);
 		setSecondChip(second);
 		setBoardState((prev) => ({ ...prev, activeChip: first }));
 
 		setIsStartModalShown(false);
+	};
+
+	const handleFinishGame = () => {
+		setIsFinishModalShown(true);
 	};
 
 	return (
@@ -54,6 +66,10 @@ function App() {
 			<StarterModal
 				isModalShown={isStartModalShown}
 				handleStartGame={handleStartGame}
+			/>
+			<FinishModal
+				isModalShown={isFinishModalShown}
+				winner={winner?.name || 'Player'}
 			/>
 		</div>
 	);

@@ -7,35 +7,34 @@ import { customStyles, ModalInterface } from '../starter-modal';
 
 export interface FinishModalInterface {
 	isModalShown: boolean;
-	winner: string;
+	winner?: string | null;
 }
 
-const FinishModal = ({ isModalShown, winner }: FinishModalInterface) => {
-	const handleRestartGame = () => {
-		console.log('restart game');
-	};
+const FinishModal = ({ isModalShown, winner }: FinishModalInterface) => (
+	// const handleRestartGame = () => {
+	// 	console.log('restart game');
+	// };
 
-	return (
-		<Modal
-			isOpen={isModalShown}
-			style={customStyles}
-			contentLabel="Example Modal"
-		>
-			<ModalTitle>{winner} wins!</ModalTitle>
+	<Modal
+		isOpen={isModalShown}
+		style={customStyles}
+		contentLabel="Example Modal"
+	>
+		<ModalTitle>{winner} wins!</ModalTitle>
 
-			<ButtonWrapper>
-				<Button onClick={handleRestartGame}>Play again</Button>
-			</ButtonWrapper>
+		{/* <ButtonWrapper> */}
+		{/*	<Button onClick={handleRestartGame}>Play again</Button> */}
+		{/* </ButtonWrapper> */}
+		<AdLink href="https://t.me/Glorius529" target="_blank">
 			<AdWrapper>
 				<AdImage src="fe-comm.jpeg" />
 				<AdText>
-					Join Genesis <br /> Front-end Community!
+					Join Genesis <br /> Front-End Community!
 				</AdText>
 			</AdWrapper>
-		</Modal>
-	);
-};
-
+		</AdLink>
+	</Modal>
+);
 export default FinishModal;
 
 const ModalTitle = styled.h2`
@@ -98,4 +97,8 @@ const AdText = styled.p`
 	color: rgba(18, 175, 194, 1);
 	font-weight: 500;
 	text-align: center;
+`;
+
+const AdLink = styled.a`
+	text-decoration: none;
 `;
