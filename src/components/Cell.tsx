@@ -3,15 +3,17 @@ import './Cell.css';
 import { Player } from './Player';
 
 type Props = {
+	x: number;
+	y: number;
 	index: string;
-	onClick?: () => void;
+	onClick: (x: number, y: number) => void;
 };
 
 export const Cell = (props: Props) => {
-	const { index, onClick } = props;
+	const { x, y, index, onClick } = props;
 	return (
 		<div
-			onClick={onClick}
+			onClick={() => onClick(x, y)}
 			className={cls('cell', {
 				placeholder: false,
 			})}
@@ -21,4 +23,3 @@ export const Cell = (props: Props) => {
 		</div>
 	);
 };
-
