@@ -1,0 +1,17 @@
+.wall {
+	transition: all 0.5s;
+}
+.wall.horr {
+	width: 70px;
+	height: 10px;
+}
+.wall.vert {
+	width: 10px;
+	height: 70px;
+}
+.wall.active {
+	background-color: #000;
+}
+.wall:hover {
+	background-color: aquamarine;
+}
