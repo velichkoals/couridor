@@ -47,24 +47,25 @@ export const Row = ({
 						hasChip={!!cell.hasFirstChip || !!cell.hasSecondChip}
 						chipColor={cell.hasFirstChip ? firstChip.color : secondChip.color}
 						onClick={(x: number, y: number) => {
-							const { activeChip: active, first, second, borders } = boardState;
-							if (boardState.activeChip) {
-								setBoardState({
-									activeChip: active,
-									first: { x, y },
-									second,
-									borders,
-								});
-							} else {
-								setBoardState({
-									activeChip: active,
-									first,
-									second: { x, y },
-									borders,
-								});
-							}
+							const { first, second, borders } = boardState;
 
-							console.log(boardState);
+							if (cell.available) {
+								if (!boardState.activeChip.color) {
+									setBoardState({
+										activeChip: secondChip,
+										first: { x, y },
+										second,
+										borders,
+									});
+								} else {
+									setBoardState({
+										activeChip: firstChip,
+										first,
+										second: { x, y },
+										borders,
+									});
+								}
+							}
 
 							// setBoardState();
 
@@ -77,8 +78,8 @@ export const Row = ({
 						type={isHorizontal ? 'vert' : 'horr'}
 						boardState={boardState}
 						cell={cell}
-						onClick={(x, y) => {
-							console.log('Wall click', x, y);
+						onClick={(cell, nextCell) => {
+							console.log('Wall click', cell, nextCell);
 						}}
 					/>
 				),
