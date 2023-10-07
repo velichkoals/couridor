@@ -18,7 +18,7 @@ export type Border = {
 	indexTo: BoardCell;
 };
 
-export type Board = [BoardCell, BoardCell];
+export type Board = Array<Array<BoardCell>>
 
 export type BoardState = {
 	activeChip: Chip;

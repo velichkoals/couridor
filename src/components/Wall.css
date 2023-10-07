@@ -4,6 +4,10 @@
 .wall.horr {
 	width: 70px;
 	height: 10px;
+	margin-right: 10px;
+}
+.horr:nth-child(9n - 9) {
+	margin-right: 0;
 }
 .wall.vert {
 	width: 10px;

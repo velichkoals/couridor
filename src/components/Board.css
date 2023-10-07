@@ -1,10 +1,10 @@
 .board {
 	display: flex;
 	flex-wrap: wrap;
-	width: 730px;
+	width: 732px;
 	padding: 10px;
-  border: 1px solid brown;
-  background-color: #fff;
+  	border: 1px solid brown;
+  	background-color: #fff;
 	/* box-shadow: 0 12px 40px -18px rgba(0, 0, 0, 0.4); */
 }
 
