@@ -78,8 +78,14 @@ export const Row = ({
 						type={isHorizontal ? 'vert' : 'horr'}
 						boardState={boardState}
 						cell={cell}
-						onClick={(cell, nextCell) => {
-							console.log('Wall click', cell, nextCell);
+						onClick={(from: BoardCell, to: BoardCell) => {
+							const { activeChip: active, first, second, borders } = boardState;
+							setBoardState({
+								activeChip: active,
+								first,
+								second,
+								borders: [...borders, { indexFrom: from, indexTo: to }],
+							});
 						}}
 					/>
 				),
