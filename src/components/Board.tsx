@@ -9,16 +9,23 @@ type BoardProps = {
 	firstChip: Chip;
 	secondChip: Chip;
 	boardState: BoardState;
+	setBoardState: (v: BoardState) => void;
+	setFirstChip: (v: Chip) => void;
+	setSecondChip: (v: Chip) => void;
 };
 
-export const Board = ({ boardState, firstChip, secondChip }: BoardProps) => {
-	const board = useMemo(
-		() => generateBoard(boardState),
-		[boardState]
- 	);
+export const Board = ({
+	boardState,
+	setBoardState,
+	firstChip,
+	secondChip,
+	setFirstChip,
+	setSecondChip,
+}: BoardProps) => {
+	const board = useMemo(() => generateBoard(boardState), [boardState]);
 
 	return (
-		<div className={'board'}>
+		<div className="board">
 			{board.map((row, rowIndex) => (
 				<Row
 					key={`${rowIndex}`}
@@ -26,10 +33,12 @@ export const Board = ({ boardState, firstChip, secondChip }: BoardProps) => {
 					activeChip={boardState.activeChip}
 					firstChip={firstChip}
 					secondChip={secondChip}
+					setFirstChip={setFirstChip}
+					setSecondChip={setSecondChip}
 					isHorizontal={rowIndex % 2 === 0}
 					boardState={boardState}
+					setBoardState={setBoardState}
 				/>
-
 			))}
 		</div>
 	);
